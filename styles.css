@@ -54,3 +54,6 @@ body {
     position:relative;
     }
 
+.hide {
+    border: none;
+}

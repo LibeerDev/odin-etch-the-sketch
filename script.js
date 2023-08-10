@@ -1,19 +1,20 @@
 const container = document.getElementById('gridContainer');
 const controls = document.getElementById('controls');
 const clear = document.getElementById('clear');
+const hideBtn = document.getElementById('hideBtn');
 
 let isMouseDown = false;
 
 // Creating the grid
-container.addEventListener('mousedown', () => {
+window.addEventListener('mousedown', () => {
   isMouseDown = true;
 });
 
-container.addEventListener('mouseup', () => {
+window.addEventListener('mouseup', () => {
   isMouseDown = false;
 });
 
-container.addEventListener('mousemove', (event) => {
+window.addEventListener('mousemove', (event) => {
   if (isMouseDown) {
     const square = event.target;
     if (square.classList.contains('grid-square')) {
@@ -28,6 +29,11 @@ for (let i = 0; i < 256; i++) {
   container.appendChild(square);
 }
 
+
+function getAllSquares() {
+    return allGridSquares = document.querySelectorAll('.grid-square');
+}
+
 function fillColor(square) {
   square.style.backgroundColor = "red";
 }
@@ -35,6 +41,13 @@ function fillColor(square) {
 clear.addEventListener('click', () => clearGrid());
 
 function clearGrid(){
-    allGridSquares = document.querySelectorAll('.grid-square');
+    getAllSquares();
     allGridSquares.forEach((square) => square.style.backgroundColor = "white");
 }
+
+hideBtn.addEventListener('click', () => hideBorder());
+
+function hideBorder() {
+    getAllSquares();
+    allGridSquares.forEach((square) => square.classList.toggle("hide"));
+} 
