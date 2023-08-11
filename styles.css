@@ -8,24 +8,28 @@ body {
     min-height: 100vh;
     background-color: #20e219;
   }
-
   .container {
     display: flex;
     flex-wrap: wrap;
-    width: 400px; /* Adjust this to your preferred grid size */
+    width: 500px; /* Adjust this to your preferred grid size */
     border: 5px solid black;
     border-radius: 5px;
+    box-sizing: content-box; /* Keep this as border-box */
+    margin: 0 auto; /* Center the container */
   }
+  
 
   .grid-square {
-    width: calc(100% / 16); /* Adjust this to control the grid size */
-    padding-bottom: calc(100% / 16); /* Maintain square aspect ratio */
-    box-sizing: border-box;
-    border: 1px solid #443737;
+    width: calc(100% / 16 - 2); /* Adjust this to control the grid size */
+    height: calc(100% / 16 - 2); /* Maintain square aspect ratio by setting height */
+    border: 1px solid black;
     background-color: white;
     user-select: none; /* Prevent text selection */
+    box-sizing: border-box;
+    flex-grow: 0; /* Prevent flex items from growing and causing wrapping */
+    flex-shrink: 0; /* Prevent flex items from shrinking and causing wrapping */
   }
-
+  
   #controls {
     border-radius: 10px;
     padding-top: 10px;
@@ -74,4 +78,22 @@ body {
   font-size: 24px;
   align-self: center;
   margin-bottom: 30px;
+}
+
+#gridContainer {
+  /* Add other styles */
+  border: 1px solid transparent; /* Add this line to hide the border initially */
+}
+
+.hide-border .grid-square {
+  border: none; /* Update the selector to target grid squares when container has "hide-border" class */
+}
+
+#color-input {
+  width: 100px;
+  border-radius: 50%;
+  padding: 50px;
+  border: 3px solid black;
+  background-color: rgb(238, 31, 31);
+  transition: background-color 0.3s ease;
 }

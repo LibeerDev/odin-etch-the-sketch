@@ -5,21 +5,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const hide = document.getElementById('hideBtn');
   const sliderElement = document.getElementById('gridSlider');
   const sliderValueElement = document.getElementById('sliderValue');
+  const color = document.getElementById('color-input');
+
+  let isBorderHidden = true;
 
   setup();
+  
+  color.backgroundColor = "red";
 
-  function setup(){
-    drawGrid(20);
+  function setup() {
+    drawGrid(16);
     const value = this.value;
     sliderValueElement.textContent = value;
+  }
+
+  function update() {
+    toggleBorderVisibility();
   }
 
   function drawGrid(gridSize){
     for (let i = 0; i < (gridSize * gridSize); i++) {
       const square = document.createElement('div');
       square.classList.add('grid-square');
+      square.style.width = `calc(100% / ${gridSize})`;
+      square.style.paddingBottom = `calc(100% / ${gridSize})`;
       container.appendChild(square);
     }
+    update();
   }
 
   // Adding an event listener
@@ -30,7 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   function changeTheGridSize(value){
-    
+    getAllSquares();
+    allGridSquares.forEach((square) => {
+      square.remove();
+    })
+    drawGrid(value);
   }
 
   let isMouseDown = false;
@@ -69,13 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
       allGridSquares.forEach((square) => square.style.backgroundColor = "white");
   }
   
-  hideBtn.addEventListener('click', () => hideBorder());
   
-  function hideBorder() {
-      getAllSquares();
-      allGridSquares.forEach((square) => square.classList.toggle("hide"));
-  }
+hideBtn.addEventListener('click', () => toggleBorderVisibility());
+
+function toggleBorderVisibility() {
+  isBorderHidden = !isBorderHidden; // Toggle the boolean value
+  container.classList.toggle("hide-border", isBorderHidden);
+  getAllSquares();
+  allGridSquares.forEach((square) => {
+    square.classList.toggle("hide", isBorderHidden); // Apply the "hide" class based on the boolean value
+  });
+}
+
+color.addEventListener('input', () => {
+  
+} )
+
+
+// DOMContentFunction end
 });
-
-
-
