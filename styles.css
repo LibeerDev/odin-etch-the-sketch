@@ -14,6 +14,7 @@ body {
     flex-wrap: wrap;
     width: 400px; /* Adjust this to your preferred grid size */
     border: 5px solid black;
+    border-radius: 5px;
   }
 
   .grid-square {
@@ -26,6 +27,7 @@ body {
   }
 
   #controls {
+    border-radius: 10px;
     padding-top: 10px;
     display: flex;
     flex-direction: column;
