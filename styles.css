@@ -59,3 +59,19 @@ body {
 .hide {
     border: none;
 }
+
+#changeGridDiv {
+  align-self: center;
+}
+
+#right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#sliderValue {
+  font-size: 24px;
+  align-self: center;
+  margin-bottom: 30px;
+}
